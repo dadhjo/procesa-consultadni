@@ -25,7 +25,7 @@ public class OrderController {
     public ResponseEntity<String> createOrder(@RequestBody OrderRequest order) throws JMSException {
         log.info("### 1 ### Order Service sending order message '{}' to the queue", order.getMessage());
 
-        MQQueue orderRequestQueue = new MQQueue("LOCAL.SEND");
+        MQQueue orderRequestQueue = new MQQueue("LOCAL.REPLY");
 
         jmsTemplate.convertAndSend(orderRequestQueue, order.getMessage(), textMessage -> {
             textMessage.setJMSCorrelationID(order.getIdentifier());
