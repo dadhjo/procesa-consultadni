@@ -19,6 +19,7 @@ public class OrderResponseListener {
                 textMessage.getText(), textMessage.getJMSCorrelationID());
 
         // do some business logic here, like updating the order in the database
+        response(textMessage.getJMSCorrelationID());
     }
     
     public void response(String dni) throws JMSException {
