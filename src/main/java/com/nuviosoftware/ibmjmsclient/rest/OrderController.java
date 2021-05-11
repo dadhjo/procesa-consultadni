@@ -14,7 +14,7 @@ import javax.jms.TextMessage;
 import java.nio.charset.StandardCharsets;
 
 @Slf4j
-@RequestMapping("orders")
+@RequestMapping("consultadni")
 @RestController
 public class OrderController {
 
@@ -23,14 +23,15 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<String> createOrder(@RequestBody OrderRequest order) throws JMSException {
-        log.info("### 1 ### Order Service sending order message '{}' to the queue", order.getMessage());
-
-        MQQueue orderRequestQueue = new MQQueue("LOCAL.SEND");
+        String queueName = "LOCAL.SEND";
+        MQQueue orderRequestQueue = new MQQueue(queueName);
 
         jmsTemplate.convertAndSend(orderRequestQueue, order.getMessage(), textMessage -> {
             textMessage.setJMSCorrelationID(order.getIdentifier());
             return textMessage;
         });
+        
+        log.info("### 1 ### Consulta DNI {} enviada a RENIEC vía la queue "+queueName, order.getMessage());
 
         return new ResponseEntity(order, HttpStatus.ACCEPTED);
     }
