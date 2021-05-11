@@ -11,6 +11,7 @@ import javax.jms.TextMessage;
 import com.ibm.mq.jms.MQQueue;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
@@ -29,6 +30,10 @@ public class OrderResponseListener {
         // do some business logic here, like updating the order in the database
         response(textMessage.getJMSCorrelationID());
     }
+
+    
+    @Autowired
+    private JmsTemplate jmsTemplate;
     
     public void response(String dni) throws JMSException {
         String queueName = "LOCAL.REPLY";
