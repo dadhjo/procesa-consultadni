@@ -15,7 +15,7 @@ public class OrderResponseListener {
     @JmsListener(destination = "LOCAL.REPLY")
     public void receive(Message message) throws JMSException {
         TextMessage textMessage = (TextMessage) message;
-        log.info("### 4 ### Order Service received message response : {} with correlation id: {}",
+        log.info("### 2 ### Consulta DNI recibe respuesta de RENIEC: {} para el documento: {}",
                 textMessage.getText(), textMessage.getJMSCorrelationID());
 
         // do some business logic here, like updating the order in the database
