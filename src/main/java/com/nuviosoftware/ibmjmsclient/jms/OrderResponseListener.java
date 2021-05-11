@@ -8,6 +8,14 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.TextMessage;
 
+import com.ibm.mq.jms.MQQueue;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.web.bind.annotation.*;
+
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
+import java.nio.charset.StandardCharsets;
+
 @Slf4j
 @Component
 public class OrderResponseListener {
