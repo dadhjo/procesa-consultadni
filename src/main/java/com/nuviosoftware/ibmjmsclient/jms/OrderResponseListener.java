@@ -32,7 +32,5 @@ public class OrderResponseListener {
         });
         
         log.info("### 1 ### Confirmacion de Consulta DNI {} enviada al usuario vía la queue "+queueName, dni);
-
-        return new ResponseEntity(order, HttpStatus.ACCEPTED);
     }
 }
