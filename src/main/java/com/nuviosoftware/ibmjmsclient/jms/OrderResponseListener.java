@@ -12,7 +12,7 @@ import javax.jms.TextMessage;
 @Component
 public class OrderResponseListener {
 
-    @JmsListener(destination = "ORDER.RESPONSE")
+    @JmsListener(destination = "LOCAL.SEND")
     public void receive(Message message) throws JMSException {
         TextMessage textMessage = (TextMessage) message;
         log.info("### 4 ### Order Service received message response : {} with correlation id: {}",
